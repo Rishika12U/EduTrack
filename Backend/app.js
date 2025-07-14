@@ -8,14 +8,18 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: 'https://edutrack-bkkt.onrender.com', // ✅ replace with your actual frontend domain
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+const corsOptions = {
+  origin: 'https://edutrack-bkkt.onrender.com', // ✅ No trailing slash
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  
   credentials: true,
-}));
+};
 
-app.options('*', cors());
+app.use(cors(corsOptions));
+
+// ✅ Important for handling preflight requests
+app.options('*', cors(corsOptions));
+
 
 
 app.use(express.json());
