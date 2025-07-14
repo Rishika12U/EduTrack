@@ -1,12 +1,12 @@
 # Ignore all node_modules folders
-**/node_modules
+/node_modules
 
 # Ignore env files
-**/.env
+.env
 
 # Ignore frontend build
 Frontend/basic-react-app/dist
 Frontend/basic-react-app/.vite
 
 # Ignore log files
-*.log
+.log
