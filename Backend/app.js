@@ -11,7 +11,8 @@ const app = express();
 app.use(cors({
   origin: 'https://edutrack-bkkt.onrender.com/', // ✅ replace with your actual frontend domain
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
 }));
 app.use(express.json());
 
