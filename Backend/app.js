@@ -4,39 +4,38 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 
 dotenv.config();
+
 const app = express();
 
-const corsOptions = {
-  origin: 'https://edutrack-bkkt.onrender.com',
+// ✅ Safe CORS config
+const allowedOrigins = [
+  'http://localhost:5000',
+  'https://edutrack-bkkt.onrender.com',
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
-};
-
-app.use(cors(corsOptions));
-
-// ✅ Manually echo CORS headers for safety
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://edutrack-bkkt.onrender.com');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  next();
-});
-
-// ✅ Handle preflight
-app.options('*', cors(corsOptions));
+}));
 
 app.use(express.json());
 
-// Routes
+// ✅ Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/activities', require('./routes/activityRoutes'));
 app.use('/api/quizzes', require('./routes/quizRoutes'));
 app.use('/api/submissions', require('./routes/submissionRoutes'));
 app.use('/api/attendance', require('./routes/attendanceRoutes'));
 
-// DB Connect
+// ✅ MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
