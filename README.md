@@ -26,26 +26,6 @@ EduTrack is a full-stack Digital Classroom Monitoring System built with the MERN
 | React Router DOM      | MongoDB + Mongoose     | Render (Deployment)      |
 | CSS (Custom per role) |                        |                          |
 
-## 📁 Folder Structure
-EduTrack/
-│
-├── Backend/
-│ ├── models/
-│ ├── routes/
-│ ├── controllers/
-│ ├── middleware/
-│ └── app.js
-│
-├── Frontend/basic-react-app
-│ ├── src/
-│ │ ├── components/
-│ │ ├── Dashboard/
-│ │ ├── pages/
-│ │ ├── styles/
-│ │ ├── axios.js
-│ │ └── App.jsx
-│ └── index.html
-
 ### Backend Setup
 cd Backend
 npm install
@@ -70,4 +50,4 @@ CORS configured properly to allow cross-origin requests
 
 🙋‍♂️ Author
 Rishika12U — GitHub
-Built with ❤️ to improve rural education monitoring.
+Built with ❤️ to improve education monitoring.
